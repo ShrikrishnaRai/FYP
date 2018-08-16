@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "722025518671",
+    "firebase_url": "https://digital-card-ec3bd.firebaseio.com",
+    "project_id": "digital-card-ec3bd",
+    "storage_bucket": "digital-card-ec3bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722025518671:android:172c3b4095432000",
+        "android_client_info": {
+          "package_name": "com.shreerai.digitalcard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722025518671-ja2v8gtuof8kpbtmtm2eqc30oscnqujh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shreerai.digitalcard",
+            "certificate_hash": "26e64f949b997d619e30e6d30bd535b29822a8d5"
+          }
+        },
+        {
+          "client_id": "722025518671-1l7k5uatfpirhkhshnktbkl7tmta1rna.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHvvLoLkOdFn3Zbv2FcXrMf_mAg54fvQY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722025518671-1l7k5uatfpirhkhshnktbkl7tmta1rna.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
