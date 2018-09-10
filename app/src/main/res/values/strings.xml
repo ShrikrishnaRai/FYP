@@ -7,4 +7,10 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="app_intro">App Intro</string>
+    <string name="todo">TODO</string>
+    <string name="terms">By Signing you agree to <u>terms and condition</u>followed by namaste nepal</string>
+    <string name="intro_text">
+        Everybody needs visitor why not everybody have visiting card.
+        Create,Share and store your visiting card
+    </string>
 </resources>

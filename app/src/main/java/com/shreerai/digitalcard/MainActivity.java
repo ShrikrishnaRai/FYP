@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -20,7 +22,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.shreerai.digitalcard.Browse.Browse;
 import com.shreerai.digitalcard.Contacts.Contacts;
 import com.shreerai.digitalcard.Profile.Profile;
@@ -36,6 +48,12 @@ public class MainActivity extends AppCompatActivity
     public boolean isFirstStart;
     private ViewPager viewPager_v;
     private TabLayout tabLayout_v;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private DatabaseReference mDatabaseReference;
+    TextView comapany_v;
+    TextView name_v;
+    TextView position_v;
+    String current_userid_V;
 
 
     @Override
@@ -50,9 +68,53 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        comapany_v = (TextView) headerView.findViewById(R.id.companyId);
+        name_v = headerView.findViewById(R.id.name);
+        position_v = headerView.findViewById(R.id.position);
         navigationView.setNavigationItemSelectedListener(this);
         checkStart();
         init();
+//        if (user != null) {
+//            Email_ID.setText(user.getEmail());
+//            Toast.makeText(getApplicationContext(), "" + user.getEmail(), Toast.LENGTH_SHORT).show();
+//            Email_ID.setText(user.getEmail().toString());
+//        }
+        current_userid_V = user.getUid();
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(current_userid_V);
+        mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String firstname_V = dataSnapshot.child("firstname").getValue().toString();
+                String lastname_V = dataSnapshot.child("lastname").getValue().toString();
+                String position = dataSnapshot.child("position").getValue().toString();
+                String company_V = dataSnapshot.child("company").getValue().toString();
+                name_v.setText(firstname_V + " " + lastname_V);
+                position_v.setText(position);
+                comapany_v.setText(company_V);
+
+                //Toast.makeText(getApplicationContext(), "" + name + position + company, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        //        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                String name = dataSnapshot.child("name").getValue().toString();
+//                String position = dataSnapshot.child("position").getValue().toString();
+//                String company = dataSnapshot.child("company").getValue().toString();
+//                Toast.makeText(getApplicationContext(), "" + name + position + company, Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 
 
