@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".DetailActivity.DetailsActivity">
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_menu_camera" />
+
+
+    <ImageView
+        android:id="@+id/fb_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/fb_icon" />
+
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/fb_input"
+        android:layout_width="321dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/fb_icon"
+        android:hint="Facebook Profile"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/twitter_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/fb_icon"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/twitter_icon" />
+
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/twitter_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/twitter_icon"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/twitter_icon"
+        android:hint="Twitter Profile"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/website_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/twitter_icon"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/website_icon" />
+
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/website_input"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/website_icon"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/website_icon"
+        android:hint="Website link"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/website_icon"
+        android:layout_margin="20dp"
+        android:text="Save" />
+</RelativeLayout>

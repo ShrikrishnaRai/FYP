@@ -1,6 +1,7 @@
 package com.shreerai.digitalcard.SignUp;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,9 +43,10 @@ public class PasswordActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     ProgressBar progressBar_v;
     private StorageReference mImageStorageReference;
-    public String uid_v;
-    public String profileImage_V;
+    public static String uid_v;
+    public static String ImageUrl_V;
     StorageReference filePath;
+    byte[] data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,7 @@ public class PasswordActivity extends AppCompatActivity {
                                     userMap.put("lastname", LastName_V);
                                     userMap.put("position", Position_V);
                                     userMap.put("company", Company_V);
+                                    userMap.put("image", ImageUrl_V);
                                     mDatabase.setValue(userMap);
                                     progressBar_v.setVisibility(View.GONE);
                                     Toast.makeText(getApplicationContext(), "Registration Sucessful", Toast.LENGTH_SHORT).show();
@@ -87,6 +91,10 @@ public class PasswordActivity extends AppCompatActivity {
                         });
             }
         });
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        designer_V.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        data = byteArrayOutputStream.toByteArray();
+
 
     }
 
@@ -97,20 +105,26 @@ public class PasswordActivity extends AppCompatActivity {
         progressBar_v.setVisibility(View.GONE);
     }
 
-    void uploadImage(String imageName) {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        designer_V.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-        byte[] data = byteArrayOutputStream.toByteArray();
-        filePath = mImageStorageReference.child("DigitalCard").child(imageName + ".jpg");
+    void uploadImage(String imageId) {
+        filePath = mImageStorageReference.child("DigitalCard").child(imageId + ".jpg");
         filePath.putBytes(data).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Upload Image Sucessfull", Toast.LENGTH_SHORT).show();
+                    filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            ImageUrl_V = uri.toString();
+                        }
+                    });
                 } else {
                     Toast.makeText(getApplicationContext(), "Upload Image Unsucessful", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
     }
+
+
 }

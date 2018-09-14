@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity
     TextView position_v;
     String current_userid_V;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,11 +74,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         checkStart();
         init();
-//        if (user != null) {
-//            Email_ID.setText(user.getEmail());
-//            Toast.makeText(getApplicationContext(), "" + user.getEmail(), Toast.LENGTH_SHORT).show();
-//            Email_ID.setText(user.getEmail().toString());
-//        }
         current_userid_V = user.getUid();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(current_userid_V);
         mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -92,8 +86,6 @@ public class MainActivity extends AppCompatActivity
                 name_v.setText(firstname_V + " " + lastname_V);
                 position_v.setText(position);
                 comapany_v.setText(company_V);
-
-                //Toast.makeText(getApplicationContext(), "" + name + position + company, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -101,20 +93,6 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-        //        mDatabaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                String name = dataSnapshot.child("name").getValue().toString();
-//                String position = dataSnapshot.child("position").getValue().toString();
-//                String company = dataSnapshot.child("company").getValue().toString();
-//                Toast.makeText(getApplicationContext(), "" + name + position + company, Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
     }
 
 
@@ -137,17 +115,10 @@ public class MainActivity extends AppCompatActivity
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                //  Intro App Initialize SharedPreferences
                 SharedPreferences getSharedPreferences = PreferenceManager
                         .getDefaultSharedPreferences(getBaseContext());
-
-                //  Create a new boolean and preference and set it to true
                 isFirstStart = getSharedPreferences.getBoolean("firstStart", true);
-
-                //  Check either activity or app is open very first time or not and do action
                 if (isFirstStart) {
-
-                    //  Launch application introduction screen
                     Intent i = new Intent(MainActivity.this, WelcomeActivity.class);
                     startActivity(i);
                     SharedPreferences.Editor e = getSharedPreferences.edit();
