@@ -67,16 +67,19 @@ public class SignInActivity extends AppCompatActivity {
         if (username_value.isEmpty()) {
             email.setError("Email is required");
             email.requestFocus();
+            loginProgessbar_v.setVisibility(View.GONE);
             return;
         }
         if (password_values.isEmpty()) {
             password.setError("Password is required");
             password.requestFocus();
+            loginProgessbar_v.setVisibility(View.GONE);
             return;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(username_value).matches()) {
             email.setError("Email pattern didn't matched");
             email.requestFocus();
+            loginProgessbar_v.setVisibility(View.GONE);
             return;
         }
         mAuth.signInWithEmailAndPassword(username_value, password_values)

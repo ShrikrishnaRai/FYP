@@ -119,12 +119,10 @@ public class Browse extends Fragment {
     }
 
     void fillData() {
-        browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.app_icon), "Background"));
-        browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher), "Launcher"));
         browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.college_icon), "Education"));
         browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.travel_icon), "Tours"));
-        browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.app_icon), "Background"));
-        browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher), "Launcher"));
+        browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.plumber_icon), "Plumbing"));
+        browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.drawable.ic_hotel_black_24dp), "Hotel"));
         browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.college_icon), "Education"));
         browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.travel_icon), "Tours"));
         browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.app_icon), "Background"));
@@ -139,14 +137,10 @@ public class Browse extends Fragment {
 
 
     void toursData() {
-        toursDtoArrayList.add(new ToursDto(BitmapFactory.decodeResource(getResources(), R.mipmap.travel_icon)));
-        toursDtoArrayList.add(new ToursDto(BitmapFactory.decodeResource(getResources(), R.mipmap.education_icon)));
-        toursDtoArrayList.add(new ToursDto(BitmapFactory.decodeResource(getResources(), R.mipmap.travel_icon)));
-        toursDtoArrayList.add(new ToursDto(BitmapFactory.decodeResource(getResources(), R.mipmap.education_icon)));
-        toursDtoArrayList.add(new ToursDto(BitmapFactory.decodeResource(getResources(), R.mipmap.travel_icon)));
-        toursDtoArrayList.add(new ToursDto(BitmapFactory.decodeResource(getResources(), R.mipmap.education_icon)));
-        toursDtoArrayList.add(new ToursDto(BitmapFactory.decodeResource(getResources(), R.mipmap.travel_icon)));
-        toursDtoArrayList.add(new ToursDto(BitmapFactory.decodeResource(getResources(), R.mipmap.education_icon)));
+        toursDtoArrayList.add(new ToursDto(BitmapFactory.decodeResource(getResources(), R.mipmap.card_three)));
+        toursDtoArrayList.add(new ToursDto(BitmapFactory.decodeResource(getResources(), R.mipmap.card_five)));
+        toursDtoArrayList.add(new ToursDto(BitmapFactory.decodeResource(getResources(), R.mipmap.card_four)));
+        toursDtoArrayList.add(new ToursDto(BitmapFactory.decodeResource(getResources(), R.mipmap.card_one)));
     }
 
     void plumbingData() {

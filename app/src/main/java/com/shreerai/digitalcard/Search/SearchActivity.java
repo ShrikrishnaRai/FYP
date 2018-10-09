@@ -1,21 +1,27 @@
 package com.shreerai.digitalcard.Search;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.shreerai.digitalcard.Browse.Adapter.EducationAdapter.EducationAdapter;
-import com.shreerai.digitalcard.Browse.Dto.EducationDto.EducationDto;
 import com.shreerai.digitalcard.R;
+import com.shreerai.digitalcard.Search.Adapter.SearchViewAdapter;
+import com.shreerai.digitalcard.Search.Dto.SearchDto;
 
 import java.util.ArrayList;
 
@@ -24,26 +30,37 @@ public class SearchActivity extends AppCompatActivity {
     private ArrayList<SearchDto> searchDtoArrayList;
     SearchViewAdapter searchViewAdapter_ic;
     DatabaseReference mDatbaseReference_searchUser;
+    ImageView search_v;
+    EditText searchArea_v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         searchDtoArrayList = new ArrayList<>();
+        mDatbaseReference_searchUser = FirebaseDatabase.getInstance().getReference().child("Users");
         init();
-        //        LinearLayoutManager linearLayoutManager_plumbing = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        LinearLayoutManager linearLayoutManager_users = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-        
+        LinearLayoutManager linearLayoutManager_users = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerViewSearchContact_v.setLayoutManager(linearLayoutManager_users);
+        recyclerViewSearchContact_v.setHasFixedSize(true);
+        recyclerViewSearchContact_v.setAdapter(searchViewAdapter_ic);
         loadUsers();
+        search_v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //  firebaseSearch(user_V);
+            }
+        });
     }
 
     void init() {
         recyclerViewSearchContact_v = findViewById(R.id.searchContact_recycler);
+        search_v = findViewById(R.id.search);
+        searchArea_v = findViewById(R.id.searchArea);
     }
 
     void loadUsers() {
 
-        mDatbaseReference_searchUser = FirebaseDatabase.getInstance().getReference().child("Users");
         mDatbaseReference_searchUser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -61,4 +78,6 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

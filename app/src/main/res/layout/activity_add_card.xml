@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddCard.AddCardActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@android:color/black">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/cardAddImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_above="@id/addCardName"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/ic_person_white_24dp" />
+
+        <TextView
+            android:id="@+id/addCardName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/addCardPosition"
+            android:layout_centerHorizontal="true"
+            android:text="Mark Zuckerberg"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/addCardPosition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:text="Mark Zuckerber"
+            android:textColor="@android:color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/addBrowse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Browse" />
+
+
+</LinearLayout>

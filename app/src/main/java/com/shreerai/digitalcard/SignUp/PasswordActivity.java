@@ -1,5 +1,6 @@
 package com.shreerai.digitalcard.SignUp;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.common.oob.SignUp;
+import com.google.android.gms.signin.SignIn;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -23,10 +26,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.shreerai.digitalcard.R;
+import com.shreerai.digitalcard.SignInActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 
+import static com.shreerai.digitalcard.SignUp.CardSelectionActivity.cardValue_V;
 import static com.shreerai.digitalcard.SignUp.CardSelectionActivity.designer_V;
 import static com.shreerai.digitalcard.SignUp.DetailActivity.Company_V;
 import static com.shreerai.digitalcard.SignUp.DetailActivity.Position_V;
@@ -44,9 +49,6 @@ public class PasswordActivity extends AppCompatActivity {
     ProgressBar progressBar_v;
     private StorageReference mImageStorageReference;
     public static String uid_v;
-    public static String ImageUrl_V;
-    StorageReference filePath;
-    byte[] data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,17 +74,18 @@ public class PasswordActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     FirebaseUser current_user_v = FirebaseAuth.getInstance().getCurrentUser();
                                     uid_v = current_user_v.getUid();
-                                    uploadImage(uid_v);
                                     mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid_v);
                                     HashMap<String, String> userMap = new HashMap<>();
+                                    userMap.put("image", String.valueOf(cardValue_V));
                                     userMap.put("firstname", FirstName_V);
                                     userMap.put("lastname", LastName_V);
                                     userMap.put("position", Position_V);
                                     userMap.put("company", Company_V);
-                                    userMap.put("image", ImageUrl_V);
+                                    userMap.put("id", uid_v);
                                     mDatabase.setValue(userMap);
                                     progressBar_v.setVisibility(View.GONE);
                                     Toast.makeText(getApplicationContext(), "Registration Sucessful", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(PasswordActivity.this, SignInActivity.class));
                                 } else {
                                     progressBar_v.setVisibility(View.GONE);
                                     Toast.makeText(getApplicationContext(), "Registration Failed", Toast.LENGTH_SHORT).show();
@@ -91,9 +94,9 @@ public class PasswordActivity extends AppCompatActivity {
                         });
             }
         });
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        designer_V.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-        data = byteArrayOutputStream.toByteArray();
+//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//        designer_V.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+//        data = byteArrayOutputStream.toByteArray();
 
 
     }
@@ -105,26 +108,27 @@ public class PasswordActivity extends AppCompatActivity {
         progressBar_v.setVisibility(View.GONE);
     }
 
-    void uploadImage(String imageId) {
-        filePath = mImageStorageReference.child("DigitalCard").child(imageId + ".jpg");
-        filePath.putBytes(data).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Upload Image Sucessfull", Toast.LENGTH_SHORT).show();
-                    filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            ImageUrl_V = uri.toString();
-                        }
-                    });
-                } else {
-                    Toast.makeText(getApplicationContext(), "Upload Image Unsucessful", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-    }
+//    boolean uploadImage(String imageId) {
+//        filePath = mImageStorageReference.child("DigitalCard").child(imageId + ".jpg");
+//        filePath.putBytes(data).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    Toast.makeText(getApplicationContext(), "Upload Image Sucessfull", Toast.LENGTH_SHORT).show();
+//                    filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                        @Override
+//                        public void onSuccess(Uri uri) {
+//                            ImageUrl_V = uri.toString();
+//                        }
+//                    });
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "Upload Image Unsucessful", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//        return true;
+//
+//    }
 
 
 }

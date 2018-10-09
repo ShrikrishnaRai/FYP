@@ -10,7 +10,9 @@
     <string name="todo">TODO</string>
     <string name="terms">By Signing you agree to <u>terms and condition</u>followed by namaste nepal</string>
     <string name="intro_text">
-        Everybody needs visitor why not everybody have visiting card.
-        Create,Share and store your visiting card
+        Create,store,browse and share your visiting card
     </string>
+    <string name="or">----------0R----------</string>
+    <string name="forget_password"><u>Forget Password ?</u></string>
+
 </resources>

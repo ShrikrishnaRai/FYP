@@ -1,0 +1,10 @@
+@startuml
+(*)  --> "check username & Password"
+If "input username & password matches" then
+--> [Yes] "turn on verbosity"
+--> "run command"
+else
+--> "run command"
+Endif
+-->(*)
+@enduml

@@ -1,6 +1,7 @@
 package com.shreerai.digitalcard.Browse.Adapter.EducationAdapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.shreerai.digitalcard.Browse.Dto.EducationDto.EducationDto;
 import com.shreerai.digitalcard.CardSelectId;
+import com.shreerai.digitalcard.EnlargeCard.EnlargeCard;
 import com.shreerai.digitalcard.R;
 
 import java.util.ArrayList;
@@ -36,24 +38,23 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.name_v.setText(educationDtos.get(position).getName());
         holder.address_v.setText(educationDtos.get(position).getAddress());
         holder.phone_v.setText(String.valueOf(educationDtos.get(position).getPhone()));
         cardSelect_ic.setId(educationDtos.get(position).getId());
-        switch (cardSelect_ic.getId()) {
-            case 1:
-
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            default:
-                break;
-        }
+        holder.relativeLayout_v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(dcoContext, EnlargeCard.class);
+                intent.putExtra("name", educationDtos.get(position).getName());
+                intent.putExtra("address", educationDtos.get(position).getAddress());
+                intent.putExtra("phone", String.valueOf(educationDtos.get(position).getPhone()));
+                intent.putExtra("cardValue", educationDtos.get(position).getId());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                dcoContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -73,12 +74,6 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.View
             address_v = itemView.findViewById(R.id.education_address);
             phone_v = itemView.findViewById(R.id.education_phone);
             relativeLayout_v = itemView.findViewById(R.id.education_relative);
-            relativeLayout_v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
         }
     }
 

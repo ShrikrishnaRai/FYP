@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#fcfcfc</color>
+    <color name="colorPrimary">#787878</color>
+    <color name="background_nav">#e3e3e3</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#2184ce</color>
+    <color name="colorAccent">#e3630b</color>
     <color name="black_overlay">#66000000</color>
     <color name="background">#f7f7f7</color>
     <color name="nav_color">#ff0000</color>
+    <color name="blue">#2184ce</color>
 </resources>

@@ -1,7 +1,10 @@
 package com.shreerai.digitalcard;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -35,10 +38,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shreerai.digitalcard.Browse.Browse;
 import com.shreerai.digitalcard.Contacts.Contacts;
+import com.shreerai.digitalcard.DetailActivity.DetailsActivity;
 import com.shreerai.digitalcard.Profile.Profile;
-import com.shreerai.digitalcard.Welcome.DigitalCard;
-import com.shreerai.digitalcard.Welcome.PermissionApp;
-import com.shreerai.digitalcard.Welcome.WelcomeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +73,6 @@ public class MainActivity extends AppCompatActivity
         name_v = headerView.findViewById(R.id.name);
         position_v = headerView.findViewById(R.id.position);
         navigationView.setNavigationItemSelectedListener(this);
-        checkStart();
         init();
         current_userid_V = user.getUid();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(current_userid_V);
@@ -111,24 +111,6 @@ public class MainActivity extends AppCompatActivity
         tabLayout_v.setupWithViewPager(viewPager_v);
     }
 
-    void checkStart() {
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences getSharedPreferences = PreferenceManager
-                        .getDefaultSharedPreferences(getBaseContext());
-                isFirstStart = getSharedPreferences.getBoolean("firstStart", true);
-                if (isFirstStart) {
-                    Intent i = new Intent(MainActivity.this, WelcomeActivity.class);
-                    startActivity(i);
-                    SharedPreferences.Editor e = getSharedPreferences.edit();
-                    e.putBoolean("firstStart", false);
-                    e.apply();
-                }
-            }
-        });
-        t.start();
-    }
 
     @Override
     public void onBackPressed() {
@@ -163,15 +145,17 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
+
         } else if (id == R.id.nav_gallery) {
+            startActivity(new Intent(MainActivity.this, DetailsActivity.class));
 
         } else if (id == R.id.nav_slideshow) {
+            Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
+            String facebookUrl = getFacebookPageURL(this);
+            facebookIntent.setData(Uri.parse(facebookUrl));
+            startActivity(facebookIntent);
 
         } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 
@@ -206,6 +190,24 @@ public class MainActivity extends AppCompatActivity
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
+        }
+    }
+
+    public static String FACEBOOK_URL = "https://www.facebook.com/profile.php?id=100020375474481";
+    public static String FACEBOOK_PAGE_ID = "YourPageName";
+
+    //method to get the right URL to use in the intent
+    public String getFacebookPageURL(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        try {
+            int versionCode = packageManager.getPackageInfo("com.facebook.katana", 0).versionCode;
+            if (versionCode >= 3002850) { //newer versions of fb app
+                return "fb://facewebmodal/f?href=" + FACEBOOK_URL;
+            } else { //older versions of fb app
+                return "fb://page/" + FACEBOOK_PAGE_ID;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            return FACEBOOK_URL; //normal web url
         }
     }
 

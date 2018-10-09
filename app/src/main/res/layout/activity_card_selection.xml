@@ -6,10 +6,10 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:orientation="vertical">
 
         <RelativeLayout
+            android:layout_marginTop="5dp"
             android:id="@+id/designer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -17,11 +17,11 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@mipmap/visiting_card"
+                android:background="@mipmap/card_one"
                 android:contentDescription="@string/todo" />
 
             <CheckBox
-                android:id="@+id/checkbox"
+                android:id="@+id/checkbox_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -30,6 +30,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -37,9 +38,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:contentDescription="@string/todo"
-                android:src="@drawable/ic_save_black_24dp" />
+                android:src="@mipmap/visiting_card" />
 
             <CheckBox
+                android:id="@+id/checkbox_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -48,6 +50,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -55,9 +58,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:contentDescription="@string/todo"
-                android:src="@drawable/ic_save_black_24dp" />
+                android:src="@mipmap/card_two" />
 
             <CheckBox
+                android:id="@+id/checkbox_three"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -66,6 +70,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -73,9 +78,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:contentDescription="@string/todo"
-                android:src="@drawable/ic_save_black_24dp" />
+                android:src="@mipmap/card_three" />
 
             <CheckBox
+                android:id="@+id/checkbox_four"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -84,6 +90,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -91,9 +98,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:contentDescription="@string/todo"
-                android:src="@drawable/ic_save_black_24dp" />
+                android:src="@mipmap/card_four" />
 
             <CheckBox
+                android:id="@+id/checkbox_five"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -102,6 +110,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -109,9 +118,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:contentDescription="@string/todo"
-                android:src="@drawable/ic_save_black_24dp" />
+                android:src="@mipmap/card_five" />
 
             <CheckBox
+                android:id="@+id/checkbox_six"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
