@@ -36,7 +36,12 @@
         <activity android:name=".EnlargeCard.EnlargeCard" />
         <activity android:name=".Search.SearchActivity" />
         <activity android:name=".AddCard.AddCardActivity" />
-        <activity android:name=".FriendRequest.FriendRequestActivity"></activity>
+        <activity
+            android:name=".FriendRequest.FriendRequestActivity"
+            android:label="Digital Card"
+            android:theme="@style/AppTheme">
+
+        </activity>
     </application>
 
 </manifest>

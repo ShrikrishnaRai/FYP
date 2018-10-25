@@ -20,7 +20,6 @@ public class DetailsActivity extends AppCompatActivity {
     String websiteLink_V;
     Button saveButton_v;
     ImageView profileImage_v;
-    boolean imageStatus_V = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

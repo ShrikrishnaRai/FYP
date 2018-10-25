@@ -45,7 +45,24 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"></RelativeLayout>
+            android:layout_weight="1"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/facebookLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="facebook" />
+
+            <TextView
+                android:id="@+id/twitterLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/facebookLink"
+                android:layout_margin="20dp"
+                android:text="twitter" />
+        </RelativeLayout>
 
 
     </LinearLayout>

@@ -10,16 +10,17 @@ import android.widget.TextView;
 
 import com.shreerai.digitalcard.Contacts.ContactDto.ContactDto;
 import com.shreerai.digitalcard.R;
+import com.shreerai.digitalcard.Search.Dto.SearchDto;
 
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
-    private ArrayList<ContactDto> contactDtoArrayList;
+    private ArrayList<SearchDto> contactDtoArrayList;
     private Context context_dco;
 
-    public ContactAdapter(ArrayList<ContactDto> contactDtoArrayList, Context context_dco) {
+    public ContactAdapter(ArrayList<SearchDto> contactDtoArrayList, Context context_dco) {
         this.contactDtoArrayList = contactDtoArrayList;
         this.context_dco = context_dco;
     }
@@ -33,9 +34,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.userType_v.setText(contactDtoArrayList.get(position).getType());
-        holder.userName_v.setText(contactDtoArrayList.get(position).getName());
-        holder.profileImage_v.setImageBitmap(contactDtoArrayList.get(position).getImage());
+        holder.userName_v.setText(contactDtoArrayList.get(position).getFirstname() + " " + contactDtoArrayList.get(position).getLastname());
+        holder.userType_v.setText(contactDtoArrayList.get(position).getPosition());
     }
 
     @Override

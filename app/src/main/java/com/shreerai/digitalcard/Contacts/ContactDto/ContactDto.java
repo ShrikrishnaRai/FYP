@@ -4,18 +4,11 @@ import android.graphics.Bitmap;
 
 public class ContactDto {
     private int id;
-    private Bitmap image;
-    private String name;
-    private String type;
-
-    public ContactDto(Bitmap image, String name, String type) {
-        this.image = image;
-        this.name = name;
-        this.type = type;
-    }
+    private String firstname;
+    private String lastname;
+    private String position;
 
     public int getId() {
-
         return id;
     }
 
@@ -23,27 +16,27 @@ public class ContactDto {
         this.id = id;
     }
 
-    public Bitmap getImage() {
-        return image;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setImage(Bitmap image) {
-        this.image = image;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getName() {
-        return name;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getType() {
-        return type;
+    public String getPosition() {
+        return position;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setPosition(String position) {
+        this.position = position;
     }
 }

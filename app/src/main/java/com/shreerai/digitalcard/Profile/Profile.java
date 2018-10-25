@@ -1,6 +1,8 @@
 package com.shreerai.digitalcard.Profile;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,6 +34,9 @@ import com.google.firebase.storage.StorageReference;
 import com.shreerai.digitalcard.R;
 import com.shreerai.digitalcard.Search.SearchActivity;
 
+import static com.shreerai.digitalcard.MainActivity.FACEBOOK_PAGE_ID;
+import static com.shreerai.digitalcard.MainActivity.FACEBOOK_URL;
+
 
 public class Profile extends Fragment {
     RelativeLayout frontProfile_v;
@@ -39,6 +44,8 @@ public class Profile extends Fragment {
     TextView textViewName_v;
     TextView textViewDesignation_v;
     String current_userid_V;
+    TextView facebookLink_v;
+    TextView twitterLink_v;
     FloatingActionButton floatingActionButtonAdd_v;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private DatabaseReference mDatabaseReference;
@@ -61,6 +68,21 @@ public class Profile extends Fragment {
         });
         textViewName_v.setText(displayFirstName_V + " " + displayLastName_V);
         textViewDesignation_v.setText(designation_V);
+        facebookLink_v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
+                String facebookUrl = getFacebookPageURL(getContext());
+                facebookIntent.setData(Uri.parse(facebookUrl));
+                startActivity(facebookIntent);
+            }
+        });
+        twitterLink_v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         return view;
     }
 
@@ -76,6 +98,8 @@ public class Profile extends Fragment {
         floatingActionButtonAdd_v = view.findViewById(R.id.fab);
         textViewName_v = view.findViewById(R.id.display_name);
         textViewDesignation_v = view.findViewById(R.id.display_designation);
+        facebookLink_v = view.findViewById(R.id.facebookLink);
+        twitterLink_v = view.findViewById(R.id.twitterLink);
     }
 
     boolean loadImage() {
@@ -111,6 +135,20 @@ public class Profile extends Fragment {
             }
         });
         return true;
+    }
+
+    public String getFacebookPageURL(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        try {
+            int versionCode = packageManager.getPackageInfo("com.facebook.katana", 0).versionCode;
+            if (versionCode >= 3002850) {
+                return "fb://facewebmodal/f?href=" + FACEBOOK_URL;
+            } else {
+                return "fb://page/" + FACEBOOK_PAGE_ID;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            return FACEBOOK_URL;
+        }
     }
 
 }

@@ -39,6 +39,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.shreerai.digitalcard.Browse.Browse;
 import com.shreerai.digitalcard.Contacts.Contacts;
 import com.shreerai.digitalcard.DetailActivity.DetailsActivity;
+import com.shreerai.digitalcard.FriendRequest.FriendRequestActivity;
 import com.shreerai.digitalcard.Profile.Profile;
 
 import java.util.ArrayList;
@@ -46,13 +47,14 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    public boolean isFirstStart;
     private ViewPager viewPager_v;
     private TabLayout tabLayout_v;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private DatabaseReference mDatabaseReference;
     TextView comapany_v;
     TextView name_v;
+    TextView facebook_v;
+    TextView twitter_v;
     TextView position_v;
     String current_userid_V;
 
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+
     }
 
 
@@ -109,6 +112,7 @@ public class MainActivity extends AppCompatActivity
         tabLayout_v = findViewById(R.id.tabs_Home);
         setUpViewPager(viewPager_v);
         tabLayout_v.setupWithViewPager(viewPager_v);
+
     }
 
 
@@ -150,10 +154,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, DetailsActivity.class));
 
         } else if (id == R.id.nav_slideshow) {
-            Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
-            String facebookUrl = getFacebookPageURL(this);
-            facebookIntent.setData(Uri.parse(facebookUrl));
-            startActivity(facebookIntent);
+            startActivity(new Intent(MainActivity.this, FriendRequestActivity.class));
+
 
         } else if (id == R.id.nav_manage) {
 
@@ -196,19 +198,5 @@ public class MainActivity extends AppCompatActivity
     public static String FACEBOOK_URL = "https://www.facebook.com/profile.php?id=100020375474481";
     public static String FACEBOOK_PAGE_ID = "YourPageName";
 
-    //method to get the right URL to use in the intent
-    public String getFacebookPageURL(Context context) {
-        PackageManager packageManager = context.getPackageManager();
-        try {
-            int versionCode = packageManager.getPackageInfo("com.facebook.katana", 0).versionCode;
-            if (versionCode >= 3002850) { //newer versions of fb app
-                return "fb://facewebmodal/f?href=" + FACEBOOK_URL;
-            } else { //older versions of fb app
-                return "fb://page/" + FACEBOOK_PAGE_ID;
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-            return FACEBOOK_URL; //normal web url
-        }
-    }
 
 }
