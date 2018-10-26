@@ -34,6 +34,7 @@
         <activity android:name=".SignUp.CardSelectionActivity" />
         <activity android:name=".DetailActivity.DetailsActivity" />
         <activity android:name=".EnlargeCard.EnlargeCard" />
+        <activity android:name=".EnlargeContact.EnlargeCardContact" />
         <activity android:name=".Search.SearchActivity" />
         <activity android:name=".AddCard.AddCardActivity" />
         <activity

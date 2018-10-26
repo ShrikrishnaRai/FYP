@@ -10,6 +10,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +70,9 @@ public class Profile extends Fragment {
         });
         textViewName_v.setText(displayFirstName_V + " " + displayLastName_V);
         textViewDesignation_v.setText(designation_V);
+        SpannableString content = new SpannableString("Facebook Link ?");
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        facebookLink_v.setText(content);
         facebookLink_v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

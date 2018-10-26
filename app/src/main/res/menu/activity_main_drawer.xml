@@ -10,12 +10,12 @@
             android:title="Import" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_person_add_black_24dp"
+            android:icon="@drawable/ic_details_black_24dp"
             android:title="Add Detail" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:icon="@drawable/ic_person_add_black_24dp"
+            android:title="Reqeust" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"

@@ -114,7 +114,6 @@ public class FriendRequestActivity extends AppCompatActivity {
                             });
                         }
                     });
-                    Toast.makeText(getApplicationContext(), "" + value, Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "You don't have any request", Toast.LENGTH_LONG).show();
                 }
@@ -132,7 +131,6 @@ public class FriendRequestActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild("received")) {
-                    Toast.makeText(getApplicationContext(), "received", Toast.LENGTH_LONG).show();
                     mReceivedFriendReqDatabase = FirebaseDatabase.getInstance().getReference().child("Friend_request").child(mCurrentUser.getUid()).child("received");
                     mReceivedFriendReqDatabase.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -176,5 +174,9 @@ public class FriendRequestActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        loadData();
+    }
 }

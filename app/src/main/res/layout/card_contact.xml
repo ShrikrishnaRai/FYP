@@ -5,6 +5,7 @@
     android:layout_marginTop="5dp">
 
     <RelativeLayout
+        android:id="@+id/rel_contact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">

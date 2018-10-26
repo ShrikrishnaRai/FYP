@@ -122,7 +122,7 @@ public class Browse extends Fragment {
         browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.college_icon), "Education"));
         browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.travel_icon), "Tours"));
         browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.plumber_icon), "Plumbing"));
-        browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.drawable.ic_hotel_black_24dp), "Hotel"));
+        browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.hotel_icon), "Hotel"));
         browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.college_icon), "Education"));
         browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.travel_icon), "Tours"));
         browseDtoArrayList.add(new BrowseDto(BitmapFactory.decodeResource(getResources(), R.mipmap.app_icon), "Background"));
@@ -144,12 +144,11 @@ public class Browse extends Fragment {
     }
 
     void plumbingData() {
-        plumbingDtoArrayList.add(new PlumbingDto(BitmapFactory.decodeResource(getResources(), R.mipmap.education_icon)));
-        plumbingDtoArrayList.add(new PlumbingDto(BitmapFactory.decodeResource(getResources(), R.mipmap.travel_icon)));
-        plumbingDtoArrayList.add(new PlumbingDto(BitmapFactory.decodeResource(getResources(), R.mipmap.education_icon)));
-        plumbingDtoArrayList.add(new PlumbingDto(BitmapFactory.decodeResource(getResources(), R.mipmap.travel_icon)));
-        plumbingDtoArrayList.add(new PlumbingDto(BitmapFactory.decodeResource(getResources(), R.mipmap.education_icon)));
-        plumbingDtoArrayList.add(new PlumbingDto(BitmapFactory.decodeResource(getResources(), R.mipmap.travel_icon)));
+        plumbingDtoArrayList.add(new PlumbingDto(BitmapFactory.decodeResource(getResources(), R.mipmap.card_one)));
+        plumbingDtoArrayList.add(new PlumbingDto(BitmapFactory.decodeResource(getResources(), R.mipmap.card_four)));
+        plumbingDtoArrayList.add(new PlumbingDto(BitmapFactory.decodeResource(getResources(), R.mipmap.card_five)));
+        plumbingDtoArrayList.add(new PlumbingDto(BitmapFactory.decodeResource(getResources(), R.mipmap.card_three)));
+        plumbingDtoArrayList.add(new PlumbingDto(BitmapFactory.decodeResource(getResources(), R.mipmap.card_one)));
     }
 
     void hotelData() {

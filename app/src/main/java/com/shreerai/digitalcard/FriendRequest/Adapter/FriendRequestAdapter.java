@@ -35,13 +35,8 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        holder.name.setText(searchDtoList.get(position).getFirstname() + "" + searchDtoList.get(position).getLastname());
+        holder.name.setText(searchDtoList.get(position).getFirstname() + " " + searchDtoList.get(position).getLastname());
         holder.designation.setText(searchDtoList.get(position).getPosition());
-        holder.acceptProfile_v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
     }
 
     @Override

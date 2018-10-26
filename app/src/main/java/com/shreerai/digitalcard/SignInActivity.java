@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +27,7 @@ public class SignInActivity extends AppCompatActivity {
     EditText email;
     EditText password;
     Button login;
+    TextView forgetPassword_v;
     Button signUp;
     private FirebaseAuth mAuth;
     String username_value;
@@ -58,6 +62,10 @@ public class SignInActivity extends AppCompatActivity {
         loginProgessbar_v = findViewById(R.id.login_progress);
         loginProgessbar_v.setVisibility(View.GONE);
         login = findViewById(R.id.login_Button);
+        forgetPassword_v = findViewById(R.id.forget_password_text);
+        SpannableString content = new SpannableString("Forget Password ?");
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        forgetPassword_v.setText(content);
     }
 
 
