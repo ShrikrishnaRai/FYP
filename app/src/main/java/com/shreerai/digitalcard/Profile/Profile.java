@@ -70,7 +70,7 @@ public class Profile extends Fragment {
         });
         textViewName_v.setText(displayFirstName_V + " " + displayLastName_V);
         textViewDesignation_v.setText(designation_V);
-        SpannableString content = new SpannableString("Facebook Link ?");
+        SpannableString content = new SpannableString("Facebook Link ");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         facebookLink_v.setText(content);
         facebookLink_v.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +82,9 @@ public class Profile extends Fragment {
                 startActivity(facebookIntent);
             }
         });
+        SpannableString content_twitter = new SpannableString("Twitter Link ");
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        twitterLink_v.setText(content_twitter);
         twitterLink_v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,7 +123,7 @@ public class Profile extends Fragment {
                 switch (value) {
                     case 1:
                         frontProfile_v.setBackgroundResource(R.mipmap.card_one);
-                        backProfile_v.setBackgroundResource(R.mipmap.card_one);
+                        backProfile_v.setBackgroundResource(R.mipmap.card_back);
                         break;
                     case 2:
                         break;

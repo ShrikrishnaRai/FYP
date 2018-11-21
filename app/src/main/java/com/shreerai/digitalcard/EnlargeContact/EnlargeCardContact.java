@@ -33,7 +33,7 @@ public class EnlargeCardContact extends AppCompatActivity {
         String lastname = intent.getExtras().getString("lastname");
         String position = intent.getExtras().getString("position");
         String phone = intent.getExtras().getString("phone");
-        frontName_v.setText(firstname + "" + lastname);
+        frontName_v.setText(firstname + " " + lastname);
         frontAddress_v.setText(position);
     }
 
@@ -43,10 +43,10 @@ public class EnlargeCardContact extends AppCompatActivity {
         frontPhone_v = findViewById(R.id.educationEnlargeFront_phone);
         facebookLink_v = findViewById(R.id.facebookLink);
         twitterLink_v = findViewById(R.id.twitterLink);
-        SpannableString content = new SpannableString("Facebook Link ?");
+        SpannableString content = new SpannableString("Facebook Link");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         facebookLink_v.setText(content);
-        SpannableString twitter_content = new SpannableString("Twitter Link ?");
+        SpannableString twitter_content = new SpannableString("Twitter Link");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         twitterLink_v.setText(twitter_content);
         frontPhone_v.setOnClickListener(new View.OnClickListener() {
