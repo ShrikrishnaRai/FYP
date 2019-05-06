@@ -11,10 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--<activity-->
-            <!--android:name=".MainActivity"-->
-            <!--android:label="@string/app_name"-->
-            <!--android:theme="@style/AppTheme.NoActionBar" />-->
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SignInActivity"
             android:label="Digital Card"
@@ -26,19 +26,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".TestActivityTwo" />
-        <activity android:name=".SignUp.IntroActivity" />
-        <activity android:name=".SignUp.EmailActivity" />
-        <activity android:name=".SignUp.UsernameActivity" />
-        <activity android:name=".SignUp.PasswordActivity" />
-        <activity android:name=".SignUp.DetailActivity" />
-        <activity android:name=".SignUp.CardSelectionActivity" />
-        <activity android:name=".DetailActivity.DetailsActivity" />
-        <activity android:name=".EnlargeCard.EnlargeCard" />
-        <activity android:name=".EnlargeContact.EnlargeCardContact" />
-        <activity android:name=".Search.SearchActivity" />
-        <activity android:name=".AddCard.AddCardActivity" />
+        <activity android:name=".signUp.IntroActivity" />
+        <activity android:name=".signUp.EmailActivity" />
+        <activity android:name=".signUp.UsernameActivity" />
+        <activity android:name=".signUp.PasswordActivity" />
+        <activity android:name=".signUp.DetailActivity" />
+        <activity android:name=".signUp.CardSelectionActivity" />
+        <activity android:name=".detailActivity.DetailsActivity" />
+        <activity android:name=".enlargeCard.EnlargeCard" />
+        <activity android:name=".enlargeContact.EnlargeCardContact" />
+        <activity android:name=".search.SearchActivity" />
+        <activity android:name=".addCard.AddCardActivity" />
         <activity
-            android:name=".FriendRequest.FriendRequestActivity"
+            android:name=".friendRequest.FriendRequestActivity"
             android:label="Digital Card"
             android:theme="@style/AppTheme">
 

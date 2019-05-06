@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    tools:context=".DetailActivity.DetailsActivity">
+    tools:context=".detailActivity.DetailsActivity">
 
     <ImageView
         android:id="@+id/profile_image"
