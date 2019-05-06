@@ -129,6 +129,10 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+        if (id == R.id.action_logout) {
+            startActivity(new Intent(MainActivity.this, SignInActivity.class));
+            finish();
+        }
 
         return super.onOptionsItemSelected(item);
     }

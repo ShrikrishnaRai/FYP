@@ -18,6 +18,7 @@
         <activity
             android:name=".SignInActivity"
             android:label="Digital Card"
+            android:noHistory="true"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +30,9 @@
         <activity android:name=".signUp.IntroActivity" />
         <activity android:name=".signUp.EmailActivity" />
         <activity android:name=".signUp.UsernameActivity" />
-        <activity android:name=".signUp.PasswordActivity" />
+        <activity
+            android:name=".signUp.PasswordActivity"
+            android:noHistory="true" />
         <activity android:name=".signUp.DetailActivity" />
         <activity android:name=".signUp.CardSelectionActivity" />
         <activity android:name=".detailActivity.DetailsActivity" />

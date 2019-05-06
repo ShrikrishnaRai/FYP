@@ -44,6 +44,7 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SignInActivity.this, IntroActivity.class));
+                finish();
             }
         });
         login.setOnClickListener(new View.OnClickListener() {
