@@ -33,9 +33,13 @@
         <activity
             android:name=".signUp.PasswordActivity"
             android:noHistory="true" />
-        <activity android:name=".signUp.DetailActivity" />
+        <activity android:name=".signUp.DetailActivity">
+
+        </activity>
         <activity android:name=".signUp.CardSelectionActivity" />
-        <activity android:name=".detailActivity.DetailsActivity" />
+        <activity android:name=".detailActivity.DetailsActivity">
+
+        </activity>
         <activity android:name=".enlargeCard.EnlargeCard" />
         <activity android:name=".enlargeContact.EnlargeCardContact" />
         <activity android:name=".search.SearchActivity" />
