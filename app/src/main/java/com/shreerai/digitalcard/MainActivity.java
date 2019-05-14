@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -41,12 +42,15 @@ public class MainActivity extends AppCompatActivity
     private TabLayout tabLayout_v;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private DatabaseReference mDatabaseReference;
+    private DatabaseReference detailDatabaseReference;
     TextView comapany_v;
     TextView name_v;
     TextView facebook_v;
     TextView twitter_v;
     TextView position_v;
     String current_userid_V;
+    public static String FACEBOOK_URL;
+    public static String FACEBOOK_PAGE_ID = "YourPageName";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +89,25 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+        detailDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(current_userid_V).child("Detail");
+        detailDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+                    if (dataSnapshot.child("facebook").getValue().toString() != null) {
+                        FACEBOOK_URL = dataSnapshot.child("facebook").getValue().toString();
+                    }
+                } catch (NullPointerException e) {
+                    Log.i("MainActivity", "Other detail not available");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 
@@ -188,9 +211,6 @@ public class MainActivity extends AppCompatActivity
             return mFragmentTitleList.get(position);
         }
     }
-
-    public static String FACEBOOK_URL = "https://www.facebook.com/profile.php?id=100020375474481";
-    public static String FACEBOOK_PAGE_ID = "YourPageName";
 
 
 }

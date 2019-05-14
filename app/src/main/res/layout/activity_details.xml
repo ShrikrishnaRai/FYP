@@ -43,10 +43,11 @@
 
     <android.support.design.widget.TextInputEditText
         android:id="@+id/twitter_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="321dp"
+        android:layout_height="50dp"
         android:layout_alignTop="@+id/twitter_icon"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="-5dp"
         android:layout_marginRight="5dp"
         android:layout_toRightOf="@id/twitter_icon"
         android:hint="Twitter Profile"
@@ -71,11 +72,33 @@
         android:hint="Website link"
         android:textStyle="bold" />
 
+    <ImageView
+        android:id="@+id/phone_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/website_icon"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_phone_black_24dp" />
+
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/phone_input"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/phone_icon"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/phone_icon"
+        android:hint="Phone Number"
+        android:inputType="number"
+        android:textStyle="bold" />
+
+
     <Button
+        style="@style/Widget.AppCompat.Button.Colored"
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/website_icon"
-        android:layout_margin="20dp"
+        android:layout_below="@id/phone_icon"
+        android:layout_margin="40dp"
         android:text="Save" />
 </RelativeLayout>

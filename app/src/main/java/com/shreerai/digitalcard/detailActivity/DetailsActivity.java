@@ -32,6 +32,7 @@ public class DetailsActivity extends AppCompatActivity {
     TextInputEditText textInputEditText_fb;
     TextInputEditText textInputEditText_twitter;
     TextInputEditText textInputEditText_website;
+    TextInputEditText textInputEditText_phone;
     String facebookLink_V;
     String twitterLink_V;
     String websiteLink_V;
@@ -57,6 +58,7 @@ public class DetailsActivity extends AppCompatActivity {
                 detail.put("facebook", facebookLink_V);
                 detail.put("twitter", twitterLink_V);
                 detail.put("website", websiteLink_V);
+                detail.put("phone", textInputEditText_phone.getText().toString());
                 try {
                     databaseReference.child(firebaseAuth.getUid()).child("Detail").setValue(detail);
                     Toast.makeText(getApplicationContext(), "Detail's Saved", Toast.LENGTH_SHORT).show();
@@ -86,6 +88,7 @@ public class DetailsActivity extends AppCompatActivity {
         textInputEditText_twitter = findViewById(R.id.twitter_input);
         textInputEditText_website = findViewById(R.id.website_input);
         profileImage_v = findViewById(R.id.profile_image);
+        textInputEditText_phone = findViewById(R.id.phone_input);
         saveButton_v = findViewById(R.id.save);
     }
 }
