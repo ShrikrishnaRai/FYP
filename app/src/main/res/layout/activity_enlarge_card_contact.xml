@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:layout_weight="2"
     android:orientation="vertical"
-    tools:context=".EnlargeCard.EnlargeCard">
+    tools:context=".activityCardDisplay.CardDisplayActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Search.SearchActivity">
+    tools:context=".activitySearch.SearchActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,8 +24,8 @@
 
         <ImageView
             android:id="@+id/search"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/searchArea"
             android:src="@drawable/ic_search_black_24dp" />

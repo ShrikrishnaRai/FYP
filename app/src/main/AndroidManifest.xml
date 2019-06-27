@@ -11,10 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--<activity-->
-            <!--android:name=".MainActivity"-->
-            <!--android:label="@string/app_name"-->
-            <!--android:theme="@style/AppTheme.NoActionBar" />-->
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SignInActivity"
             android:label="Digital Card"
@@ -32,13 +32,15 @@
         <activity android:name=".SignUp.PasswordActivity" />
         <activity android:name=".SignUp.DetailActivity" />
         <activity android:name=".SignUp.CardSelectionActivity" />
-        <activity android:name=".DetailActivity.DetailsActivity" />
-        <activity android:name=".EnlargeCard.EnlargeCard" />
-        <activity android:name=".EnlargeContact.EnlargeCardContact" />
-        <activity android:name=".Search.SearchActivity" />
-        <activity android:name=".AddCard.AddCardActivity" />
         <activity
-            android:name=".FriendRequest.FriendRequestActivity"
+            android:name=".DetailActivity.DetailsActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".activityCardDisplay.CardDisplayActivity" />
+        <activity android:name=".EnlargeContact.EnlargeCardContact" />
+        <activity android:name=".activitySearch.SearchActivity" />
+        <activity android:name=".addCardActivity.AddCardActivity" />
+        <activity
+            android:name=".activityFriendRequest.FriendRequestActivity"
             android:label="Digital Card"
             android:theme="@style/AppTheme">
 
