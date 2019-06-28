@@ -6,7 +6,7 @@ public interface FriendRequest {
                       String lastName,
                       String company,
                       String position,
-                      Long image);
+                      String image);
 
     void deleteFriendRequest(String firstName);
 

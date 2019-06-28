@@ -8,6 +8,18 @@ public class ContactEntity {
     private String position;
     private String company;
 
+    public ContactEntity() {
+    }
+
+    public ContactEntity(String id, String firstname, String lastname, String image, String position, String company) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.image = image;
+        this.position = position;
+        this.company = company;
+    }
+
     public String getId() {
         return id;
     }

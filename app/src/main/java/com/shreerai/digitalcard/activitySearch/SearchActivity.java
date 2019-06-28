@@ -27,7 +27,7 @@ import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
     RecyclerView recyclerViewSearchContact_v;
-    private ArrayList<SearchEntity> searchEntityArrayList;
+    private ArrayList<ContactEntity> searchEntityArrayList;
     SearchViewAdapter searchViewAdapter_ic;
     DatabaseReference mDatbaseReference_searchUser;
     DatabaseReference mFriendsDatabaseReference;
@@ -66,7 +66,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    SearchEntity searchEntity_icM = dataSnapshot1.getValue(SearchEntity.class);
+                    ContactEntity searchEntity_icM = dataSnapshot1.getValue(ContactEntity.class);
                     if (!searchEntity_icM.getId().equals(user.getUid())) {
                         searchEntityArrayList.add(searchEntity_icM);
                     }

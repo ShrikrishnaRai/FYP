@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shreerai.digitalcard.activityAdvertisement.Browse;
+import com.shreerai.digitalcard.activityUserProfile.UserProfileActivity;
 import com.shreerai.digitalcard.contacts.ContactsFragment;
 import com.shreerai.digitalcard.DetailActivity.DetailsActivity;
 import com.shreerai.digitalcard.activityFriendRequest.FriendRequestActivity;
@@ -46,7 +47,8 @@ public class MainActivity extends AppCompatActivity
     TextView facebook_v;
     TextView twitter_v;
     TextView position_v;
-    String current_userid_V;
+    private String current_userid_V;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +63,20 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
-        comapany_v = (TextView) headerView.findViewById(R.id.companyId);
-        name_v = headerView.findViewById(R.id.name);
-        position_v = headerView.findViewById(R.id.position);
+        loadHeaderView(headerView);
         navigationView.setNavigationItemSelectedListener(this);
         init();
         current_userid_V = user.getUid();
+        loadProfileDetail();
+    }
+
+    void loadHeaderView(View headerView) {
+        comapany_v = headerView.findViewById(R.id.companyId);
+        name_v = headerView.findViewById(R.id.name);
+        position_v = headerView.findViewById(R.id.position);
+    }
+
+    void loadProfileDetail() {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(current_userid_V);
         mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -85,7 +95,6 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-
     }
 
 

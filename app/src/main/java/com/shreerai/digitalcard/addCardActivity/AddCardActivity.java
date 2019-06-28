@@ -1,16 +1,30 @@
 package com.shreerai.digitalcard.addCardActivity;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.shreerai.digitalcard.R;
+import com.shreerai.digitalcard.activityUserProfile.UserProfileActivity;
+import com.shreerai.digitalcard.activityUserProfile.UserProfileModel;
+import com.shreerai.digitalcard.contacts.model.ContactEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddCardActivity extends AppCompatActivity {
     TextView cardName_v;
@@ -20,7 +34,20 @@ public class AddCardActivity extends AppCompatActivity {
     private DatabaseReference mFriends;
     private FirebaseUser mCurrentUser;
     private String currentState_V;
-    public static String id;
+    private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    private String firstName;
+    private String lastName;
+    private String position;
+    private String company;
+    private String id;
+    private String image;
+    private DatabaseReference databaseReference;
+    private String profileFirstName;
+    private String profileLastName;
+    private String profilePositionName;
+    private String profileCompanyName;
+    private String profileId;
+    private String profileImage;
 
 
     @Override
@@ -29,124 +56,133 @@ public class AddCardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_card);
         init();
         currentState_V = "not_friends";
-        mFriendRegDatabase = FirebaseDatabase.getInstance().getReference().child("Friend_request");
         mFriends = FirebaseDatabase.getInstance().getReference().child("Friends");
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
-        Intent i = getIntent();
-        String firstname = i.getExtras().getString("firstname");
-        String lastname = i.getExtras().getString("lastname");
-        String position = i.getExtras().getString("position");
-        id = i.getExtras().getString("id");
-        cardName_v.setText(firstname + " " + lastname);
+        setTransferValue(getIntent());
+        cardName_v.setText(firstName + " " + lastName);
         cardPosition_v.setText(position);
-//        mFriendRegDatabase.child(mCurrentUser.getUid()).child("received").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.hasChild(id)) {
-//                    String req_type = dataSnapshot.child(id).child("request_type").getValue().toString();
-//                    if (req_type.equals("received")) {
-//                        currentState_V = "req_received";
-//                        browse_v.setText("Allow Request");
-//                    } else if (req_type.equals("sent")) {
-//                        currentState_V = "req_sent";
-//                        browse_v.setText("Deny Request");
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//        String value = mFriendRegDatabase.child(mCurrentUser.getUid()).child("recevied").getKey();
-//        Toast.makeText(getApplicationContext(), "" + value, Toast.LENGTH_LONG).show();
-//        browse_v.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                browse_v.setEnabled(false);
-//                if (currentState_V.equals("not_friends")) {
-//                    mFriendRegDatabase.child(mCurrentUser.getUid()).child(id).child("request_type")
-//                            .setValue("sent").addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if (task.isSuccessful()) {
-//                                mFriendRegDatabase.child(id).child(mCurrentUser.getUid()).child("request_type")
-//                                        .setValue("received").addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                    @Override
-//                                    public void onSuccess(Void aVoid) {
-//                                        Toast.makeText(getApplicationContext(), "Browse Request Send", Toast.LENGTH_LONG).show();
-//                                        currentState_V = "request_sent";
-//                                        browse_v.setEnabled(true);
-//                                        browse_v.setText("Cancel Friend Request");
-//                                    }
-//                                });
-//
-//                            } else {
-//                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//                    mFriendRegDatabase.child(mCurrentUser.getUid()).child("sent").setValue(id).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if (task.isSuccessful()) {
-//                                mFriendRegDatabase.child(id).child("received").setValue(mCurrentUser.getUid()).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                    @Override
-//                                    public void onSuccess(Void aVoid) {
-//                                        Toast.makeText(getApplicationContext(), "Browse Request Sent", Toast.LENGTH_LONG).show();
-//                                        currentState_V = "request_sent";
-//                                        browse_v.setEnabled(true);
-//                                        browse_v.setText("Cancel Browse Request");
-//                                    }
-//                                });
-//                            } else {
-//                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
-//                            }
-//                        }
-//                    });
-//                }
+        loadDetail();
+        browse_v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Browse button clicked", Toast.LENGTH_LONG).show();
+                addCard();
+            }
+        });
 
-//                if (currentState_V.equals("request_sent")) {
-//                    mFriendRegDatabase.child(mCurrentUser.getUid()).child(id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-//                        @Override
-//                        public void onSuccess(Void aVoid) {
-//                            mFriendRegDatabase.child(id).child(mCurrentUser.getUid()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                @Override
-//                                public void onSuccess(Void aVoid) {
-//                                    browse_v.setEnabled(true);
-//                                    currentState_V = "not_friends";
-//                                    browse_v.setText("Browse");
-//                                }
-//                            });
-//                        }
-//                    });
-//                }
-//                if (currentState_V.equals("request_sent")) {
-//                    mFriendRegDatabase.child(mCurrentUser.getUid()).child("sent").removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-//                        @Override
-//                        public void onSuccess(Void aVoid) {
-//                            mFriendRegDatabase.child(id).child("recieved").removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                @Override
-//                                public void onSuccess(Void aVoid) {
-//                                    browse_v.setEnabled(true);
-//                                    currentState_V = "not_friends";
-//                                    browse_v.setText("Browse");
-//                                }
-//                            });
-//                        }
-//                    });
-//                }
-//                if (currentState_V.equals("req_received")) {
-//
-//                }
-//            }
-//        });
+    }
+
+    void setTransferValue(Intent intent) {
+        firstName = intent.getExtras().getString("firstname");
+        lastName = intent.getExtras().getString("lastname");
+        position = intent.getExtras().getString("position");
+        id = intent.getExtras().getString("id");
+        company = intent.getExtras().getString("company");
+        image = intent.getExtras().getString("image");
     }
 
     void init() {
         cardName_v = findViewById(R.id.addCardName);
         cardPosition_v = findViewById(R.id.addCardPosition);
         browse_v = findViewById(R.id.addBrowse);
+    }
+
+    void addCard() {
+//        UserProfileModel userProfileModel = new UserProfileModel();
+//        ContactEntity contactEntity = userProfileModel.loadDetail();
+        //  Toast.makeText(getApplicationContext(), loadDetail().get(0).getFirstname(), Toast.LENGTH_LONG).show();
+        //   Toast.makeText(getApplicationContext(), loadDetail().getFirstname(), Toast.LENGTH_LONG).show();
+//        mFriendRegDatabase = FirebaseDatabase.getInstance().getReference()
+//                .child("Users")
+//                .child(id)
+//                .child("friendsRequest")
+//                .child(contactEntity.getFirstname())
+//                .push();
+//    public ContactEntity(String id, String firstname, String lastname, String image, String position, String company) {
+        //  ContactEntity contactEntity = new ContactEntity(id, firstName, lastName, image, position, company);
+//        mFriendRegDatabase.setValue(contactEntity)
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        Toast.makeText(getApplicationContext(), "browse request sent", Toast.LENGTH_LONG).show();
+//                    }
+//                });
+        /*   friendsDatabaseReferences = FirebaseDatabase.getInstance()
+                .getReference()
+                .child("Users")
+                .child(userId)
+                .child("friends")
+                .child(firstName);
+        friendsDatabaseReferences.setValue(friendRequestEntity)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        deleteFriendRequest(firstName);
+                        displayMessage("Friend request accepted");
+                        onSuceed();
+                    }
+                });*/
+//        mFriendRegDatabase=FirebaseDatabase.getInstance()
+//                .getReference()
+//                .child("Users")
+//                .child(mCurrentUser.getUid())
+//                .child("friendsRequest")
+//                .child()
+
+        mFriendRegDatabase = FirebaseDatabase.getInstance()
+                .getReference()
+                .child("Users")
+                .child(id)
+                .child("friendsRequest")
+                .child(profileFirstName);
+        ContactEntity contactEntity = new ContactEntity(profileId, profileFirstName, profileLastName, profileImage, profilePositionName, profileCompanyName);
+        mFriendRegDatabase.setValue(contactEntity).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(getApplicationContext(), "Browse request sent", Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    void loadDetail() {
+        final List<ContactEntity> contactEntityList = new ArrayList<>();
+        databaseReference = FirebaseDatabase.getInstance().getReference()
+                .child("Users")
+                .child(firebaseUser.getUid());
+        ContactEntity contactEntity = new ContactEntity();
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                Toast.makeText(getApplicationContext(), "loadDetail " + dataSnapshot.child("company").getValue().toString(), Toast.LENGTH_LONG).show();
+//                ContactEntity contactEntity = new ContactEntity();
+//                contactEntity.setCompany(dataSnapshot.child("company").getValue().toString());
+//                contactEntity.setPosition(dataSnapshot.child("position").getValue().toString());
+//                contactEntity.setImage(dataSnapshot.child("image").getValue().toString());
+//                contactEntity.setFirstname(dataSnapshot.child("firstname").getValue().toString());
+//                contactEntity.setLastname(dataSnapshot.child("lastname").getValue().toString());
+                profileId = dataSnapshot.child("id").getValue().toString();
+                profileFirstName = dataSnapshot.child("firstname").getValue().toString();
+                profileLastName = dataSnapshot.child("lastname").getValue().toString();
+                profileCompanyName = dataSnapshot.child("company").getValue().toString();
+                profileImage = dataSnapshot.child("image").getValue().toString();
+                profilePositionName = dataSnapshot.child("position").getValue().toString();
+//                loadContactDetail(dataSnapshot.child("id").getValue().toString(),
+//                        dataSnapshot.child("firstname").getValue().toString(),
+//                        dataSnapshot.child("lastname").getValue().toString(),
+//                        dataSnapshot.child("image").getValue().toString(),
+//                        dataSnapshot.child("company").getValue().toString(),
+//                        dataSnapshot.child("position").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    ContactEntity loadContactDetail(String id, String firstName, String lastname, String image, String company, String position) {
+        return new ContactEntity(id, firstName, lastname, image, position, company);
     }
 }

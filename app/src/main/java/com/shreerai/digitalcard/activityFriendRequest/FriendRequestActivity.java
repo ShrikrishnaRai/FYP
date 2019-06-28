@@ -80,6 +80,7 @@ public class FriendRequestActivity extends AppCompatActivity implements FriendRe
 
 
     void init() {
+        noRequest_imageView = findViewById(R.id.no_request_image);
         friendRequestRecycler_v = findViewById(R.id.friendRequest);
 
     }
@@ -98,7 +99,7 @@ public class FriendRequestActivity extends AppCompatActivity implements FriendRe
                              String lastName,
                              String company,
                              String position,
-                             Long image) {
+                             String image) {
         FriendRequestEntity friendRequestEntity = new FriendRequestEntity(id, firstName, lastName, image, position, company);
         friendsDatabaseReferences = FirebaseDatabase.getInstance()
                 .getReference()

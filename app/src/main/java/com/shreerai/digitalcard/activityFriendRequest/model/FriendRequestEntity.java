@@ -4,11 +4,11 @@ public class FriendRequestEntity {
     private String id;
     private String firstname;
     private String lastname;
-    private Long image;
+    private String image;
     private String position;
     private String company;
 
-    public FriendRequestEntity(String id, String firstname, String lastname, Long image, String position, String company) {
+    public FriendRequestEntity(String id, String firstname, String lastname, String image, String position, String company) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -44,11 +44,11 @@ public class FriendRequestEntity {
         this.lastname = lastname;
     }
 
-    public Long getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Long image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

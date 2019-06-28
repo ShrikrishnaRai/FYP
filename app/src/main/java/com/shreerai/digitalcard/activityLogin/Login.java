@@ -1,4 +1,4 @@
-package com.shreerai.digitalcard.Welcome;
+package com.shreerai.digitalcard.activityLogin;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

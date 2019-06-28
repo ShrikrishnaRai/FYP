@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activityUserProfile.UserProfileActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -42,9 +43,7 @@
         <activity
             android:name=".activityFriendRequest.FriendRequestActivity"
             android:label="Digital Card"
-            android:theme="@style/AppTheme">
-
-        </activity>
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
