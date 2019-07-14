@@ -1,8 +1,6 @@
-package com.shreerai.digitalcard.SignUp;
+package com.shreerai.digitalcard.signUp;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,10 +10,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.common.oob.SignUp;
-import com.google.android.gms.signin.SignIn;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,20 +19,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.shreerai.digitalcard.R;
 import com.shreerai.digitalcard.SignInActivity;
 
-import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 
-import static com.shreerai.digitalcard.SignUp.CardSelectionActivity.cardValue_V;
-import static com.shreerai.digitalcard.SignUp.CardSelectionActivity.designer_V;
-import static com.shreerai.digitalcard.SignUp.DetailActivity.Company_V;
-import static com.shreerai.digitalcard.SignUp.DetailActivity.Position_V;
-import static com.shreerai.digitalcard.SignUp.EmailActivity.Email_V;
-import static com.shreerai.digitalcard.SignUp.UsernameActivity.FirstName_V;
-import static com.shreerai.digitalcard.SignUp.UsernameActivity.LastName_V;
+import static com.shreerai.digitalcard.signUp.CardSelectionActivity.cardValue_V;
+import static com.shreerai.digitalcard.signUp.DetailActivity.Company_V;
+import static com.shreerai.digitalcard.signUp.DetailActivity.Position_V;
+import static com.shreerai.digitalcard.signUp.EmailActivity.Email_V;
+import static com.shreerai.digitalcard.signUp.UsernameActivity.FirstName_V;
+import static com.shreerai.digitalcard.signUp.UsernameActivity.LastName_V;
 
 public class PasswordActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.shreerai.digitalcard.Db;
+package com.shreerai.digitalcard.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.shreerai.digitalcard.Db.Dto.Image;
+import com.shreerai.digitalcard.db.Dto.Image;
 
 public class Image_dB extends SQLiteOpenHelper {
     static String Db_contact_image = "Contact_image";

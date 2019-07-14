@@ -1,81 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp"
-    tools:context=".DetailActivity.DetailsActivity">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_menu_camera" />
-
-
-    <ImageView
-        android:id="@+id/fb_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerVertical="true"
-        android:src="@mipmap/fb_icon" />
-
-    <android.support.design.widget.TextInputEditText
-        android:id="@+id/fb_input"
-        android:layout_width="321dp"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_toRightOf="@id/fb_icon"
-        android:hint="Facebook Profile"
-        android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/twitter_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/fb_icon"
-        android:layout_marginTop="20dp"
-        android:src="@mipmap/twitter_icon" />
-
-    <android.support.design.widget.TextInputEditText
-        android:id="@+id/twitter_input"
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/linearlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/twitter_icon"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_toRightOf="@id/twitter_icon"
-        android:hint="Twitter Profile"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:context=".activityCardDetails.view.CardDetailsActivity">
 
-    <ImageView
-        android:id="@+id/website_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/twitter_icon"
-        android:layout_marginTop="20dp"
-        android:src="@mipmap/website_icon" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter your Social Detai's" />
 
-    <android.support.design.widget.TextInputEditText
-        android:id="@+id/website_input"
-        android:layout_width="315dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/website_icon"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_toRightOf="@id/website_icon"
-        android:hint="Website link"
-        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/website_icon"
-        android:layout_margin="20dp"
-        android:text="Save" />
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/facebook"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:src="@mipmap/facebook" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/facebookUrlInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="Facebook URL">
+
+            <EditText
+                android:id="@+id/facebookurl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Facebook URL" />
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/linkden"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:src="@mipmap/linkden" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="Linkden URL">
+
+            <EditText
+                android:id="@+id/linkdenUrl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Linkden URL" />
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/google"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:src="@mipmap/twitter" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:hint="Twitter URL">
+
+            <EditText
+                android:id="@+id/twitterUrl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Twitter URL" />
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/website"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:src="@mipmap/website_icon" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:hint="Website URL">
+
+            <EditText
+                android:id="@+id/websiteUrl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Website URL" />
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/phone"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_local_phone_black_24dp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:hint="Phone Number">
+
+            <EditText
+                android:inputType="phone"
+                android:id="@+id/phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Phone Number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="40dp"
+            android:background="@color/colorAccent"
+            android:text="Save" />
+
+    </LinearLayout>
+</ScrollView>

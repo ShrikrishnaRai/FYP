@@ -27,9 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shreerai.digitalcard.activityAdvertisement.Browse;
-import com.shreerai.digitalcard.activityUserProfile.UserProfileActivity;
 import com.shreerai.digitalcard.contacts.ContactsFragment;
-import com.shreerai.digitalcard.DetailActivity.DetailsActivity;
+import com.shreerai.digitalcard.detailActivity.DetailsActivity;
 import com.shreerai.digitalcard.activityFriendRequest.FriendRequestActivity;
 import com.shreerai.digitalcard.profileFragment.Profile;
 
@@ -135,7 +134,10 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) {
+            Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+            startActivity(intent);
+            finish();
             return true;
         }
 
@@ -147,9 +149,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_gallery) {
             startActivity(new Intent(MainActivity.this, DetailsActivity.class));
 
         } else if (id == R.id.nav_slideshow) {

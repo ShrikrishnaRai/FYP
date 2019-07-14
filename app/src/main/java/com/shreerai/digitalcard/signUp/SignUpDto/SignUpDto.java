@@ -1,4 +1,4 @@
-package com.shreerai.digitalcard.SignUp.SignUpDto;
+package com.shreerai.digitalcard.signUp.SignUpDto;
 
 public class SignUpDto {
     private String firstname;

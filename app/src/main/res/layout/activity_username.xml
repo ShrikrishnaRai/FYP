@@ -7,7 +7,7 @@
     android:background="@color/background"
     android:orientation="vertical"
     android:padding="40dp"
-    tools:context=".SignUp.UsernameActivity">
+    tools:context=".signUp.UsernameActivity">
 
     <TextView
         android:id="@+id/qns"

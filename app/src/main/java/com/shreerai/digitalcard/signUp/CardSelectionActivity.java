@@ -1,4 +1,4 @@
-package com.shreerai.digitalcard.SignUp;
+package com.shreerai.digitalcard.signUp;
 
 import android.content.Intent;
 import android.graphics.Bitmap;

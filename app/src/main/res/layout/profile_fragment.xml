@@ -36,8 +36,39 @@
                 android:layout_below="@id/display_name"
                 android:layout_margin="5dp"
                 android:text="Senior Developer"
-                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/display_organization"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/display_designation"
+                android:layout_margin="5dp"
+                android:text="Senior Developer"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/phone"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@id/phone_number"
+                android:src="@drawable/ic_local_phone_black_24dp" />
+
+            <TextView
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_margin="5dp"
+                android:id="@+id/phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:text="9823642192" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -48,24 +79,37 @@
             android:layout_weight="1"
             android:padding="20dp">
 
-            <TextView
-                android:textStyle="italic"
-                android:textSize="16sp"
+            <ImageView
                 android:id="@+id/facebookLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:text="facebook" />
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:src="@mipmap/facebook" />
 
-            <TextView
-                android:textStyle="italic"
-                android:textSize="16sp"
+            <ImageView
                 android:id="@+id/twitterLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_below="@id/facebookLink"
-                android:layout_margin="20dp"
-                android:text="twitter" />
+                android:layout_margin="5dp"
+                android:src="@mipmap/twitter" />
+
+            <ImageView
+                android:id="@+id/linkdenLink"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/twitterLink"
+                android:layout_margin="5dp"
+                android:src="@mipmap/linkden" />
+
+            <ImageView
+                android:id="@+id/websiteLink"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/linkdenLink"
+                android:layout_margin="5dp"
+                android:src="@mipmap/website_icon" />
+
         </RelativeLayout>
 
 
@@ -75,8 +119,8 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_arrow_downward_black_24dp" />

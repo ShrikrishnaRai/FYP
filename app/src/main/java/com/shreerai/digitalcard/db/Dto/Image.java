@@ -1,4 +1,4 @@
-package com.shreerai.digitalcard.Db.Dto;
+package com.shreerai.digitalcard.db.Dto;
 
 public class Image {
     private int id;

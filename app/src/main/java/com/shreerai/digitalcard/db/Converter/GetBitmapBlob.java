@@ -1,8 +1,7 @@
-package com.shreerai.digitalcard.Db.Converter;
+package com.shreerai.digitalcard.db.Converter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v4.graphics.BitmapCompat;
 
 import java.io.ByteArrayOutputStream;
 

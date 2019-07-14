@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.shreerai.digitalcard.contacts.model.ContactEntity;
-import com.shreerai.digitalcard.EnlargeContact.EnlargeCardContact;
+import com.shreerai.digitalcard.enlargeContact.EnlargeCardContact;
 import com.shreerai.digitalcard.R;
 
 import java.util.List;

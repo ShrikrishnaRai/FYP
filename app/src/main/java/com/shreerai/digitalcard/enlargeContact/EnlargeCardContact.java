@@ -1,4 +1,4 @@
-package com.shreerai.digitalcard.EnlargeContact;
+package com.shreerai.digitalcard.enlargeContact;
 
 import android.content.Context;
 import android.content.Intent;

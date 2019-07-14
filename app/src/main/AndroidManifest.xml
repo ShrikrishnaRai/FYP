@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
-        android:icon="@mipmap/card_app"
+        android:icon="@mipmap/app_menu_icon"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -26,19 +26,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestActivityTwo" />
-        <activity android:name=".SignUp.IntroActivity" />
-        <activity android:name=".SignUp.EmailActivity" />
-        <activity android:name=".SignUp.UsernameActivity" />
-        <activity android:name=".SignUp.PasswordActivity" />
-        <activity android:name=".SignUp.DetailActivity" />
-        <activity android:name=".SignUp.CardSelectionActivity" />
+        <activity android:name=".signUp.IntroActivity" />
+        <activity android:name=".signUp.EmailActivity" />
+        <activity android:name=".signUp.UsernameActivity" />
+        <activity android:name=".signUp.PasswordActivity" />
+        <activity android:name=".signUp.DetailActivity" />
+        <activity android:name=".signUp.CardSelectionActivity" />
         <activity
-            android:name=".DetailActivity.DetailsActivity"
+            android:name=".detailActivity.DetailsActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".activityCardDisplay.CardDisplayActivity" />
-        <activity android:name=".EnlargeContact.EnlargeCardContact" />
-        <activity android:name=".activitySearch.SearchActivity" />
+        <activity
+            android:name=".enlargeContact.EnlargeCardContact"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".activitySearch.SearchActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".addCardActivity.AddCardActivity" />
         <activity
             android:name=".activityFriendRequest.FriendRequestActivity"

@@ -14,6 +14,7 @@ import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,15 +37,20 @@ public class Profile extends Fragment {
     RelativeLayout backProfile_v;
     TextView textViewName_v;
     TextView textViewDesignation_v;
+    TextView textViewOrganization_v;
     String current_userid_V;
-    TextView facebookLink_v;
-    TextView twitterLink_v;
+    ImageView facebookLink_v;
+    ImageView twitterLink_v;
+    ImageView phone_v;
+    TextView phoneNumber_v;
     FloatingActionButton floatingActionButtonAdd_v;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private DatabaseReference mDatabaseReference;
     String displayFirstName_V;
     String displayLastName_V;
     String designation_V;
+    String company_V;
+    String phone_V;
 
     @Nullable
     @Override
@@ -60,9 +66,9 @@ public class Profile extends Fragment {
         });
         textViewName_v.setText(displayFirstName_V + " " + displayLastName_V);
         textViewDesignation_v.setText(designation_V);
+        textViewOrganization_v.setText(company_V);
         SpannableString content = new SpannableString("Facebook Link ");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
-        facebookLink_v.setText(content);
         facebookLink_v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,13 +78,16 @@ public class Profile extends Fragment {
                 startActivity(facebookIntent);
             }
         });
-        SpannableString content_twitter = new SpannableString("Twitter Link ");
-        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
-        twitterLink_v.setText(content_twitter);
-        twitterLink_v.setOnClickListener(new View.OnClickListener() {
+        phone_v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                openDialPad();
+            }
+        });
+        phoneNumber_v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialPad();
             }
         });
         return view;
@@ -98,8 +107,16 @@ public class Profile extends Fragment {
         textViewDesignation_v = view.findViewById(R.id.display_designation);
         facebookLink_v = view.findViewById(R.id.facebookLink);
         twitterLink_v = view.findViewById(R.id.twitterLink);
+        textViewOrganization_v = view.findViewById(R.id.display_organization);
+        phone_v = view.findViewById(R.id.phone);
+        phoneNumber_v = view.findViewById(R.id.phone_number);
     }
 
+    /**
+     * load detail's from firebase on init
+     *
+     * @return
+     */
     boolean loadImage() {
         current_userid_V = user.getUid();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(current_userid_V);
@@ -110,6 +127,7 @@ public class Profile extends Fragment {
                 displayFirstName_V = dataSnapshot.child("firstname").getValue().toString();
                 displayLastName_V = dataSnapshot.child("lastname").getValue().toString();
                 designation_V = dataSnapshot.child("position").getValue().toString();
+                company_V = dataSnapshot.child("company").getValue().toString();
                 switch (value) {
                     case 1:
                         frontProfile_v.setBackgroundResource(R.mipmap.card_one);
@@ -135,7 +153,7 @@ public class Profile extends Fragment {
         return true;
     }
 
-    public String getFacebookPageURL(Context context) {
+    String getFacebookPageURL(Context context) {
         PackageManager packageManager = context.getPackageManager();
         try {
             int versionCode = packageManager.getPackageInfo("com.facebook.katana", 0).versionCode;
@@ -147,6 +165,12 @@ public class Profile extends Fragment {
         } catch (PackageManager.NameNotFoundException e) {
             return FACEBOOK_URL;
         }
+    }
+
+    private void openDialPad() {
+
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber_v.getText().toString()));
+        getActivity().startActivity(intent);
     }
 
 }

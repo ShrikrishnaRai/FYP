@@ -1,4 +1,4 @@
-package com.shreerai.digitalcard.SignUp;
+package com.shreerai.digitalcard.signUp;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.shreerai.digitalcard.R;
-import com.shreerai.digitalcard.SignUp.SignUpDto.SignUpDto;
-
-import java.util.ArrayList;
 
 public class UsernameActivity extends AppCompatActivity {
     Button save;
